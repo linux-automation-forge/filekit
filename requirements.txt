@@ -1,0 +1,19 @@
+# filekit — dependency manifest
+# Core tools are preinstalled on standard Linux and WSL2.
+# The optional compressors are auto-detected; the script falls back
+# gracefully to whatever exists (zstd → xz → bzip2 → gzip).
+
+# --- CORE (required — script refuses to run without these) -------------------
+bash            (4.0+)      # runtime
+coreutils                   # sha256sum, stat, od, find, diff, cmp, sort, du
+tar                         # archive engine (part of every base install)
+
+# --- COMPRESSORS (all optional — first available wins) ----------------------
+zstd            # RECOMMENDED: best speed-to-ratio balance.  apt: zstd
+xz              # best compression ratio, slower.            apt: xz-utils
+gzip            # universal fallback — preinstalled everywhere
+bzip2           # legacy option.                             apt: bzip2
+
+# --- ONE-LINE INSTALL (gets everything) --------------------------------------
+# sudo apt update && sudo apt install -y zstd xz-utils bzip2
+# (tar, gzip, coreutils are already on your system)
